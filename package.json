@@ -1,9 +1,9 @@
 {
-  "name": "catcm-library-core-sdk",
-  "version": "0.0.1",
+  "name": "@36node/catcm-library-core-sdk",
+  "version": "0.0.0",
   "description": "A SDK boilerplate.",
   "repository": {
-    "url": "36node/catcm-library-core-sdk",
+    "url": "https://github.com/36node/catcm-library-core-sdk",
     "type": "git"
   },
   "license": "MIT",
