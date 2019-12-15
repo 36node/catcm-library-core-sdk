@@ -1,6 +1,6 @@
 {
   "name": "@36node/catcm-library-core-sdk",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A SDK boilerplate.",
   "repository": {
     "url": "https://github.com/36node/catcm-library-core-sdk",
