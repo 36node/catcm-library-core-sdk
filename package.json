@@ -1,0 +1,73 @@
+{
+  "name": "catcm-library-core-sdk",
+  "version": "0.0.0",
+  "description": "A SDK boilerplate.",
+  "repository": {
+    "url": "36node/catcm-library-core-sdk",
+    "type": "git"
+  },
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "template": "sdk",
+  "files": [
+    "bin",
+    "dist",
+    "mock",
+    "typings"
+  ],
+  "config-overrides-path": "node_modules/@36node/sketch/config-overrides",
+  "main": "dist/index.js",
+  "module": "dist/index.m.js",
+  "typings": "typings/index.d.ts",
+  "scripts": {
+    "build": "sketch build",
+    "format": "prettier --trailing-comma es5 --write 'src/**/*.js'",
+    "gen": "swagen sdk ../catcm-library-core/openapi.yml",
+    "lint": "sketch lint src",
+    "release": "standard-version",
+    "start": "bin/mock-server.js",
+    "test:int": "sketch test --env=node"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -e $GIT_PARAMS",
+      "pre-commit": "lint-staged",
+      "pre-push": "npm run lint && CI=true NODE_ENV=test npm run test"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "npm run format",
+      "git add"
+    ]
+  },
+  "dependencies": {
+    "@36node/fetch": "^0.6.4",
+    "@36node/query-normalizr": "^0.4.8",
+    "commander": "^2.19.0"
+  },
+  "devDependencies": {
+    "@36node/eslint-config": "^0.6.4",
+    "@36node/mock-server": "^0.0.15",
+    "@36node/sketch": "^0.13.26",
+    "@36node/swagen": "^0.13.8",
+    "@commitlint/cli": "^7.5.2",
+    "@commitlint/config-conventional": "^7.5.0",
+    "@types/faker": "^4.1.5",
+    "@types/jest": "^24.0.12",
+    "faker": "^4.1.0",
+    "husky": "^1.3.1",
+    "lint-staged": "^8.1.5",
+    "moment": "^2.24.0",
+    "prettier": "^1.18.2",
+    "standard-version": "^6.0.1"
+  },
+  "gitHead": "8a5ca75e017f5462149d28b1a85b4f7fa2026978"
+}
