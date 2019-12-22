@@ -52,6 +52,23 @@ export default class SDK {
       });
     },
     /**
+     * Create a library
+     *
+     * @param {CreateLibraryRequest} req createLibrary request
+     * @returns {Promise<CreateLibraryResponse>} The Library created
+     */
+    createLibrary: (req = {}) => {
+      const { headers, body } = req;
+
+      if (!body) throw new Error("requetBody is required for createLibrary");
+
+      return fetch(`${this.base}/library`, {
+        method: "POST",
+        body,
+        headers: { Authorization: this.auth, ...headers },
+      });
+    },
+    /**
      * Find library by id
      *
      * @param {ShowLibraryByIdRequest} req showLibraryById request
@@ -65,6 +82,43 @@ export default class SDK {
 
       return fetch(`${this.base}/library/${libraryId}`, {
         method: "GET",
+        headers: { Authorization: this.auth, ...headers },
+      });
+    },
+  };
+  /**
+   * permission's methods
+   */
+  permission = {
+    /**
+     * List all permission
+     *
+     * @param {ListPermissionRequest} req listPermission request
+     * @returns {Promise<ListPermissionResponse>} A paged array of permission
+     */
+    listPermission: (req = {}) => {
+      const { query, headers } = req;
+
+      return fetch(`${this.base}/permission`, {
+        method: "GET",
+        query: denormalize(query),
+        headers: { Authorization: this.auth, ...headers },
+      });
+    },
+    /**
+     * Update permission
+     *
+     * @param {UpdatePermissionRequest} req updatePermission request
+     * @returns {Promise<UpdatePermissionResponse>} A paged array of permission
+     */
+    updatePermission: (req = {}) => {
+      const { headers, body } = req;
+
+      if (!body) throw new Error("requetBody is required for updatePermission");
+
+      return fetch(`${this.base}/permission`, {
+        method: "PATCH",
+        body,
         headers: { Authorization: this.auth, ...headers },
       });
     },
