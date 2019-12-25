@@ -106,18 +106,18 @@ export default class SDK {
       });
     },
     /**
-     * Update permission
+     * Upsert permission
      *
-     * @param {UpdatePermissionRequest} req updatePermission request
-     * @returns {Promise<UpdatePermissionResponse>} A paged array of permission
+     * @param {UpsertPermissionRequest} req upsertPermission request
+     * @returns {Promise<UpsertPermissionResponse>} A paged array of permission
      */
-    updatePermission: (req = {}) => {
+    upsertPermission: (req = {}) => {
       const { headers, body } = req;
 
-      if (!body) throw new Error("requetBody is required for updatePermission");
+      if (!body) throw new Error("requetBody is required for upsertPermission");
 
       return fetch(`${this.base}/permission`, {
-        method: "PATCH",
+        method: "POST",
         body,
         headers: { Authorization: this.auth, ...headers },
       });

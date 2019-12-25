@@ -37,9 +37,9 @@ declare namespace SDK {
      */
     listPermission(req: ListPermissionRequest): Promise<ListPermissionResponse>;
     /**
-     * Update permission
+     * Upsert permission
      */
-    updatePermission(req: UpdatePermissionRequest): Promise<UpdatePermissionResponse>;
+    upsertPermission(req: UpsertPermissionRequest): Promise<UpsertPermissionResponse>;
   }
 
   type ListLibraryRequest = {
@@ -108,11 +108,11 @@ declare namespace SDK {
     };
   };
 
-  type UpdatePermissionRequest = {
+  type UpsertPermissionRequest = {
     body: [PermissionDoc];
   };
 
-  type UpdatePermissionResponse = {
+  type UpsertPermissionResponse = {
     body: [Permission];
   };
 
