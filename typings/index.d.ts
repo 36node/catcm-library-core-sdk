@@ -9,6 +9,7 @@ declare class SDK {
 
   library: SDK.LibraryAPI;
   permission: SDK.PermissionAPI;
+  merge: SDK.MergeAPI;
 }
 
 declare namespace SDK {
@@ -41,6 +42,12 @@ declare namespace SDK {
      */
     upsertPermission(req: UpsertPermissionRequest): Promise<UpsertPermissionResponse>;
   }
+  export interface MergeAPI {
+    /**
+     * mergeTable
+     */
+    mergeTable(req: MergeTableRequest): Promise<MergeTableResponse>;
+  }
 
   type ListLibraryRequest = {
     query: {
@@ -52,13 +59,21 @@ declare namespace SDK {
 
       filter: {
         id?: string;
-        type?: string;
-        title: {
+        category: {
           $regex?: string;
         };
-        author?: string;
-        dynasty?: string;
-        q?: string;
+        name: {
+          $regex?: string;
+        };
+        author: {
+          $regex?: string;
+        };
+        dynasty: {
+          $regex?: string;
+        };
+        value: {
+          $regex?: string;
+        };
       };
     };
   };
@@ -114,6 +129,13 @@ declare namespace SDK {
 
   type UpsertPermissionResponse = {
     body: [Permission];
+  };
+
+  type MergeTableResponse = {
+    body: [MongoDefault];
+    headers: {
+      xTotalCount: number;
+    };
   };
 
   type Library = {

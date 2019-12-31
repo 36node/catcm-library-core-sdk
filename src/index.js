@@ -123,4 +123,23 @@ export default class SDK {
       });
     },
   };
+  /**
+   * merge's methods
+   */
+  merge = {
+    /**
+     * mergeTable
+     *
+     * @param {MergeTableRequest} req mergeTable request
+     * @returns {Promise<MergeTableResponse>} A paged array of permission
+     */
+    mergeTable: (req = {}) => {
+      const { headers } = req;
+
+      return fetch(`${this.base}/mergeTable`, {
+        method: "GET",
+        headers: { Authorization: this.auth, ...headers },
+      });
+    },
+  };
 }
